@@ -51,3 +51,14 @@ template('home', function(){
 template('about', function(){
     about();
 });
+
+route('/', 'home')
+route('/about', 'about')
+
+function resolveRoute(route) {
+    try {
+        return routes[route]
+    } catch (e) {
+        throw new Error(`Route ${route} not found`)
+    }
+}
