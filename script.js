@@ -62,3 +62,10 @@ function resolveRoute(route) {
         throw new Error(`Route ${route} not found`)
     }
 }
+
+function router(evt) {
+    let url = window.location.hash.slice(1) || '/';
+    let route = resolveRoute(url);
+
+    route();
+};
