@@ -1,65 +1,63 @@
-let app_div = document.getElementById('app');
 let routes = {};
 let templates = {};
+let app_div = document.getElementById('app');
 
-const home = () => {
-    let div = document.createElement('div')
+function home() {
+    let div = document.createElement('div');
     let link = document.createElement('a');
     link.href = '#/about';
-    link.innerText = "About";
+    link.innerText = 'About';
 
-
-    div.innerHTML = "<h1>Home</h1>"
+    div.innerHTML = '<h1>Home</h1>';
     div.appendChild(link);
-    
+
     app_div.appendChild(div);
 }
 
-function about() {  
-    
-    let nt = document.createElement('div');
-    let link = document.createElement('a');     
-    
+function about() {
+    let div = document.createElement('div');
+    let link = document.createElement('a');
     link.href = '#/';
     link.innerText = 'Home';
 
-    nt.innerHTML = '<h1>About</h1>';
-    nt.appendChild(link);//Añade el link creado al div     
-};
+    div.innerHTML = '<h1>About</h1>';
+    div.appendChild(link);
 
-const route = (path, template) => {
-    if (typeof template === 'function') {
+    app_div.appendChild(div);
+}
+
+function route(path, template) {
+    if (typeof template == 'function') {
         return routes[path] = template;
-    } else if (typeof template === 'string') {
-        return routes[path] = templates[template]
+    } else if (typeof template == 'string') {
+        return routes[path] = templates[template];
     } else {
         return;
     }
 }
 
-function template (name, templateFunction) {
+function template(name, templateFunction) {
     return templates[name] = templateFunction;
-};
-
-/*
-* Map a template to a route
+}
+/* 
+    Map a template to a route
 */
-template('home', function(){
+template('home', function() {
     home();
-});
+})
 
-template('about', function(){
+template('about', function() {
     about();
-});
+})
 
 route('/', 'home')
 route('/about', 'about')
 
 function resolveRoute(route) {
     try {
-        return routes[route]
+        return routes[route];
     } catch (e) {
-        throw new Error(`Route ${route} not found`)
+        throw new Error(`Route ${route} not found`);
     }
 }
 
@@ -68,4 +66,7 @@ function router(evt) {
     let route = resolveRoute(url);
 
     route();
-};
+}
+
+window.addEventListener('load', router);
+window.addEventListener('hashchange', router)
