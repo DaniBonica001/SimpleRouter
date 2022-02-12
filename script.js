@@ -14,3 +14,15 @@ const home = () => {
     
     app_div.appendChild(div);
 }
+
+function about() {  
+    
+    let nt = document.createElement('div');
+    let link = document.createElement('a');     
+    
+    link.href = '#/';
+    link.innerText = 'Home';
+
+    nt.innerHTML = '<h1>About</h1>';
+    nt.appendChild(link);//Añade el link creado al div     
+};
