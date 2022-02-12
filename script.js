@@ -1,6 +1,7 @@
 let routes = {};
 let templates = {};
 let app_div = document.getElementById('app');
+let actual = null;
 
 function home() {
     let div = document.createElement('div');
@@ -11,7 +12,8 @@ function home() {
     div.innerHTML = '<h1>Home</h1>';
     div.appendChild(link);
 
-    app_div.appendChild(div);
+    replaceDiv(div);
+    //app_div.appendChild(div);
 }
 
 function about() {
@@ -22,8 +24,18 @@ function about() {
 
     div.innerHTML = '<h1>About</h1>';
     div.appendChild(link);
+    replaceDiv(div);
+    //app_div.appendChild(div);
+}
 
-    app_div.appendChild(div);
+function replaceDiv(div) {
+    if (actual != null) {
+        app_div.replaceChild(div, actual);
+        actual = div;
+    } else {
+        app_div.appendChild(div);
+        actual = div;
+    }
 }
 
 function route(path, template) {
