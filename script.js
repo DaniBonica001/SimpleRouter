@@ -26,3 +26,13 @@ function about() {
     nt.innerHTML = '<h1>About</h1>';
     nt.appendChild(link);//Añade el link creado al div     
 };
+
+const router = (path, template) => {
+    if (typeof template === 'function') {
+        return routes[path] = template;
+    } else if (typeof template === 'string') {
+        return routes[path] = templates[template]
+    } else {
+        return;
+    }
+}
