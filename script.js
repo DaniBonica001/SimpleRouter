@@ -27,7 +27,7 @@ function about() {
     nt.appendChild(link);//Añade el link creado al div     
 };
 
-const router = (path, template) => {
+const route = (path, template) => {
     if (typeof template === 'function') {
         return routes[path] = template;
     } else if (typeof template === 'string') {
@@ -36,3 +36,18 @@ const router = (path, template) => {
         return;
     }
 }
+
+function template (name, templateFunction) {
+    return templates[name] = templateFunction;
+};
+
+/*
+* Map a template to a route
+*/
+template('home', function(){
+    home();
+});
+
+template('about', function(){
+    about();
+});
