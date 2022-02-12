@@ -24,6 +24,7 @@ function about() {
 
     div.innerHTML = '<h1>About</h1>';
     div.appendChild(link);
+    
     replaceDiv(div);
     //app_div.appendChild(div);
 }
